@@ -45,5 +45,6 @@
 	<classpathentry kind="lib" path="E:/cucumber jar files/tag-expressions-1.0.0.jar"/>
 	<classpathentry kind="lib" path="E:/Selenium jar files/selenium-java-2.52.0.jar"/>
 	<classpathentry kind="lib" path="E:/Selenium jar files/selenium-server-standalone-2.52.0.jar"/>
+	<classpathentry kind="lib" path="E:/Selenium jar files/sikuli-script.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

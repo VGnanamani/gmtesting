@@ -9,6 +9,7 @@ import cucumber.api.junit.Cucumber;
 
 @CucumberOptions(features= {"Features"},
         glue= {"stepDefinition"},
+       tags= {"@Scenario2"},
         plugin= {"pretty","html:target/cucumber-reports"},
         monochrome=true)
 

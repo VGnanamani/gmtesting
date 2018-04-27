@@ -4,10 +4,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
+
 
 public class CreateTemplatePage {
 
@@ -16,11 +18,11 @@ public class CreateTemplatePage {
 	
 	public CreateTemplatePage(WebDriver driver) {
 		
-		this.driver=driver;
+		CreateTemplatePage.driver=driver;
 		
 	}
 	
-	
+	  
 	//Reports window
 	
 		@FindBy(xpath="//a[@class='k-button k-grid-addReport grid-add-button']")
@@ -34,21 +36,19 @@ public class CreateTemplatePage {
 		@FindBy(xpath="//span[.='Report Template']")
 		WebElement optType;
 		
-		@FindBy(xpath="//*[@id='reportTypes-list']/span/input")
-		WebElement optypevalue;
-		
+			
 		@FindBy(xpath="//span[.='Choose style template...']")
 		WebElement optStyleTemplate;
-		
-		@FindBy(xpath="//span[.='Choose style template...']")
-		WebElement optStyleTemplatevalue;
 		
 		
 		@FindBy(xpath="//button[.='Save']")
 		WebElement btnsave;
 		
+		@FindBy(xpath="//input[@id='reportDescription']")
+		WebElement txtDescription;
+		
 		//***********************	
-		public void create_template(String TemplateName, String Style, String StyleTemp) throws InterruptedException {
+		public void create_template(String TemplateName) throws InterruptedException {
 			
 			
 			Thread.sleep(5000);
@@ -58,7 +58,7 @@ public class CreateTemplatePage {
 			Thread.sleep(5000);
 			
 			
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HHmmss"); 
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
 		    Date date = new Date();
 		    String FinalDate = dateFormat.format(date);
 		    Thread.sleep(10000);
@@ -66,25 +66,39 @@ public class CreateTemplatePage {
 			txtTemplateName.sendKeys(TemplateName +FinalDate);	
 			
 			
+			Thread.sleep(10000);
+
+			txtDescription.sendKeys("test automation");
 			optType.click();
-			optypevalue.sendKeys(Style);
+			
+			
+			Actions optType = new Actions(driver);
+			 
+			optType.sendKeys(Keys.ARROW_UP).sendKeys(Keys.ARROW_UP).perform();
+			optType.sendKeys(Keys.ENTER).perform();
+			
+			
+		    Thread.sleep(10000);
+
+						
 			
 			optStyleTemplate.click();
-			optStyleTemplatevalue.sendKeys(StyleTemp);
 			
-			/*Select dropDownBox1 = new Select(optType);
-			dropDownBox1.selectByVisibleText(Style);
 			
-			Select dropDownBox2 = new Select(optStyleTemplate);
-			dropDownBox2.selectByVisibleText(StyleTemp);*/
+			Actions optStyleTemplate = new Actions(driver);
+			
+			
+			optStyleTemplate.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ARROW_DOWN).perform();
+			optStyleTemplate.sendKeys(Keys.ENTER).perform();
+			
+			
+		    Thread.sleep(10000);
+
 			
 			btnsave.click();
 			
 			
-			
-			
-			
-			
+			//Template creation done		
 			
 			
 			
